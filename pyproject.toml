@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "heypy"
+version = "0.1.0"
+authors = [
+  { name="Dimitar Georgievski", email="dgeorgievski@gmail.com" }, # Replace with actual author email if known
+]
+description = "A simple Flask web application package."
+readme = "README.md"
+requires-python = ">=3.8"
+keywords = ["flask", "web", "application"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Framework :: Flask",
+]
+license = { text = "MIT" } # <--- ADDED THIS LINE
+dependencies = [
+    "Flask>=2.0.0", # Adjust version as needed based on actual usage in the project
+]
+
+[project.urls]
+Homepage = "https://github.com/dgeorgievski/heypy"
+Repository = "https://github.com/dgeorgievski/heypy"
+"Bug Tracker" = "https://github.com/dgeorgievski/heypy/issues"
+
+# [project.scripts]
+# heypy = "heypy.app:main" # Uncomment and adjust if there's a specific CLI entry point
+
+[tool.setuptools.packages.find]
+where = ["."] # Search for packages in the current directory
+include = ["heypy*"] # Include the 'heypy' package and its sub-packages

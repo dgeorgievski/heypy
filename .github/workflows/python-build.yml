@@ -1,0 +1,85 @@
+name: Test Python Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      python-version:
+        description: 'Programming language'
+        required: false
+        default: '3.11'
+        type: string
+      
+      working-directory:
+        description: "Project root directory"
+        required: false
+        default: '.'
+        type: string
+
+      registry:
+        description: 'Container registry'
+        required: false
+        type: string
+        default: 'ghcr.io'
+      lint-command:
+        description: 'Lint command (e.g., npm run lint)'
+        required: false
+        default: 'pylint app run.py tests'
+        type: string
+
+      test-command:
+        description: 'test command (e.g., npm test)'
+        required: false
+        default: 'python -m unittest discover tests'
+        type: string
+        
+      package-command:
+        description: "Command to package the app"
+        required: false
+        default: 'python -m build'
+        type: string
+
+      package-output:
+        description: "Directory or file path to upload as package artifact"
+        required: false
+        default: 'dist/'
+        type: string
+
+      artifact-name:
+        description: "Name of the uploaded artifact"
+        required: false
+        default: 'python-package'
+        type: string
+      
+      run_trivy:
+        description: 'Run Trivy Scan'
+        required: false
+        default: true
+        type: boolean
+
+      run_grype:
+        description: 'Run Grype Scan'
+        required: false
+        default: true
+        type: boolean
+
+      contine-on-error:
+        description: "Continue on error for linting"
+        required: false
+        default: true
+        type: boolean
+jobs:
+  test:
+    uses: dgeorgievski/my-github-actions/.github/workflows/python-build.yml@test-go
+    with:
+      python-version: ${{ inputs.python-version }}
+      working-directory: ${{ inputs.working-directory }}
+      registry: ${{ inputs.registry }}
+      lint-command: ${{ inputs.lint-command }}
+      test-command: ${{ inputs.test-command }}
+      package-command: ${{ inputs.package-command }}
+      package-output: ${{ inputs.package-output }}
+      artifact-name: ${{ inputs.artifact-name }}  
+      run_trivy: ${{ inputs.run_trivy }}
+      run_grype: ${{ inputs.run_grype }}
+      continue-on-error: ${{ inputs.contine-on-error }}
+    secrets: inherit

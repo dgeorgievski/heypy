@@ -82,4 +82,8 @@ jobs:
       run_trivy: ${{ inputs.run_trivy }}
       run_grype: ${{ inputs.run_grype }}
       # continue-on-error: "true"
+    permissions:
+      actions: read
+      security-events: write
+      contents: write
     secrets: inherit

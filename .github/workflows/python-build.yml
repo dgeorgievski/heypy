@@ -23,13 +23,13 @@ on:
       lint-command:
         description: 'Lint command (e.g., npm run lint)'
         required: false
-        default: 'pylint app run.py tests'
+        default: pylint
         type: string
 
       test-command:
         description: 'test command (e.g., npm test)'
         required: false
-        default: 'python -m unittest discover tests'
+        default: 'python -m pytest'
         type: string
         
       package-command:
@@ -47,7 +47,7 @@ on:
       artifact-name:
         description: "Name of the uploaded artifact"
         required: false
-        default: 'python-package'
+        default: heypy'
         type: string
       
       run_trivy:
@@ -84,6 +84,7 @@ jobs:
       # continue-on-error: "true"
     permissions:
       actions: read
-      security-events: write
       contents: write
+      security-events: write
+      packages: write
     secrets: inherit

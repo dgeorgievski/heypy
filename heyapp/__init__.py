@@ -1,8 +1,15 @@
+"""
+    Factory function to create a Flask application instance 
+"""
 import os
 from flask import Flask
 from config import config # Import the config dictionary
+from heyapp.views.frontend import frontend
 
 def create_app(config_name=None):
+    '''
+    Create a Flask application instance.
+    '''
     app = Flask(__name__)
 
     if config_name is None:
@@ -10,9 +17,6 @@ def create_app(config_name=None):
 
     app.config.from_object(config[config_name])
     config[config_name].init_app(app) # Call the static init_app method
-
-  # Import the blueprints
-    from heyapp.views.frontend import frontend
 
     # Register the blueprints with the main app
     app.register_blueprint(frontend)

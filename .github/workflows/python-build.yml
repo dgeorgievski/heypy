@@ -69,7 +69,7 @@ on:
       #   type: boolean
 jobs:
   test:
-    uses: dgeorgievski/my-github-actions/.github/workflows/python-build.yml@test-go
+    uses: dgeorgievski/my-github-actions/.github/workflows/python-build.yml@test-py
     with:
       python-version: ${{ inputs.python-version }}
       working-directory: ${{ inputs.working-directory }}

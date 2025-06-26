@@ -62,11 +62,11 @@ on:
         default: true
         type: boolean
 
-      contine-on-error:
-        description: "Continue on error for linting"
-        required: false
-        default: true
-        type: boolean
+      # contine-on-error:
+      #   description: "Continue on error for linting"
+      #   required: false
+      #   default: true
+      #   type: boolean
 jobs:
   test:
     uses: dgeorgievski/my-github-actions/.github/workflows/python-build.yml@test-go
@@ -81,5 +81,5 @@ jobs:
       artifact-name: ${{ inputs.artifact-name }}  
       run_trivy: ${{ inputs.run_trivy }}
       run_grype: ${{ inputs.run_grype }}
-      continue-on-error: ${{ inputs.contine-on-error }}
+      # continue-on-error: "true"
     secrets: inherit
